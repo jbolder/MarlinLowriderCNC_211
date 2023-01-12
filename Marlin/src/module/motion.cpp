@@ -2300,6 +2300,8 @@ void prepare_line_to_destination() {
 void set_axis_is_at_home(const AxisEnum axis) {
   if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPGM(">>> set_axis_is_at_home(", AS_CHAR(AXIS_CHAR(axis)), ")");
 
+  if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPGM("triggered stepper count", stepper.triggered_position(axis));
+
   set_axis_trusted(axis);
   set_axis_homed(axis);
 

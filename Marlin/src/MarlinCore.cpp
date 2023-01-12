@@ -484,7 +484,7 @@ inline void manage_inactivity(const bool no_stepper_sleep=false) {
       SERIAL_ERROR_START();
       SERIAL_ECHOPGM(STR_KILL_PRE);
       SERIAL_ECHOLNPGM(STR_KILL_BUTTON);
-      kill();
+      kill(FPSTR(STR_KILL_BUTTON), nullptr, false);
     }
   #endif
 

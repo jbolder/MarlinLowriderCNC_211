@@ -566,3 +566,6 @@
 #define ESP_WIFI_MODULE_ENABLE_PIN          PG1
 #define ESP_WIFI_MODULE_GPIO0_PIN           PF14
 #define ESP_WIFI_MODULE_GPIO2_PIN           PF15
+
+//Adding kill pin for emergency switch off
+#define KILL_PIN                            PD0
