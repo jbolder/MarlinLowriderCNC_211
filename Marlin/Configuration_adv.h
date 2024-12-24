@@ -811,7 +811,8 @@
 #endif
 
 #if HAS_DUAL_Y_STEPPERS
-  #define INVERT_Y2_VS_Y_DIR          // Y2 direction signal is the opposite of Y
+  //Disable for LR4 config
+  //#define INVERT_Y2_VS_Y_DIR          // Y2 direction signal is the opposite of Y
   #define Y_DUAL_ENDSTOPS             // Y2 has its own endstop
   #if ENABLED(Y_DUAL_ENDSTOPS)
     #define Y2_USE_ENDSTOP    _YMAX_  // Y2 endstop board plug. Don't forget to enable USE_*_PLUG.
@@ -823,7 +824,8 @@
 // Multi-Z steppers
 //
 #ifdef Z2_DRIVER_TYPE
-  #define INVERT_Z2_VS_Z_DIR          // Z2 direction signal is the opposite of Z
+  //Disable for LR4 config
+  //#define INVERT_Z2_VS_Z_DIR          // Z2 direction signal is the opposite of Z
 
   #define Z_MULTI_ENDSTOPS            // Other Z axes have their own endstops
   #if ENABLED(Z_MULTI_ENDSTOPS)

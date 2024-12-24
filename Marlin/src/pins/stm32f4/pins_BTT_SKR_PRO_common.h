@@ -129,47 +129,81 @@
 //
 // Steppers
 //
-#define X_STEP_PIN                          PE9
-#define X_DIR_PIN                           PF1
-#define X_ENABLE_PIN                        PF2
+
+// LR4 Upgrade Dec 2024 (mirrored build) changed PIN mapping to accomodate cable length of LR3 build
+// This code is for Step, Dir, Enable, and CS pins, for UART see below!
+
+// OLD LR3
+//X - port X
+//Y front (2 in code) - port E0
+//Z front (2 in code) - port E1
+//Y back (1 in code) - port Y
+//Z back (1 in code) - port Z0
+
+// NEW LR4 Dec 2024
+//X - port E2
+//Y front (2 in code) - port Y
+//Z front (2 in code) - port Z0
+//Y back (1 in code) - port E0
+//Z back (1 in code) - port E1
+
+// Physical port to IO pin mappings (Step, DIR, Enable, CS)
+//Port X PE9 PF1 PF2 PA15
+//Port Y PE11 PE8 PD7 PB8
+//Port Z0 PE13 PC2 PC0 PB9
+//Port E0 PE14 PA0 PC3 PB3
+//Port E1 PD15 PE7 PA3 PG15
+//Port E2 PD13 PG9 PF0 PG12
+
+
+//X Axis in code, LR4 port E2
+#define X_STEP_PIN                       PD13    // PE9
+#define X_DIR_PIN                        PG9 // PF1
+#define X_ENABLE_PIN                     PF0 // PF2
 #ifndef X_CS_PIN
-  #define X_CS_PIN                          PA15
+  #define X_CS_PIN                       PG12 // PA15
 #endif
 
-#define Y_STEP_PIN                          PE11
-#define Y_DIR_PIN                           PE8
-#define Y_ENABLE_PIN                        PD7
+//Y1 (back) in code, LR4 port E0
+#define Y_STEP_PIN                        PE14   // PE11
+#define Y_DIR_PIN                         PA0// PE8
+#define Y_ENABLE_PIN                     PC3 // PD7
 #ifndef Y_CS_PIN
-  #define Y_CS_PIN                          PB8
+  #define Y_CS_PIN                       PB3 // PB8
 #endif
 
-#define Z_STEP_PIN                          PE13
-#define Z_DIR_PIN                           PC2
-#define Z_ENABLE_PIN                        PC0
+//Z1 (back) in code, LR4 port E1
+#define Z_STEP_PIN                       PD15    // PE13
+#define Z_DIR_PIN                        PE7 // PC2
+#define Z_ENABLE_PIN                     PA3 // PC0
 #ifndef Z_CS_PIN
-  #define Z_CS_PIN                          PB9
+  #define Z_CS_PIN                       PG15 // PB9
 #endif
 
-#define E0_STEP_PIN                         PE14
-#define E0_DIR_PIN                          PA0
-#define E0_ENABLE_PIN                       PC3
+//Y2 (front) in code, LR4 port Y
+#define E0_STEP_PIN                       PE11   // PE14
+#define E0_DIR_PIN                        PE8// PA0
+#define E0_ENABLE_PIN                     PD7// PC3
 #ifndef E0_CS_PIN
-  #define E0_CS_PIN                         PB3
+  #define E0_CS_PIN                       PB8// PB3
 #endif
 
-#define E1_STEP_PIN                         PD15
-#define E1_DIR_PIN                          PE7
-#define E1_ENABLE_PIN                       PA3
+//Z2 (front) in code, LR4 Port Z0
+#define E1_STEP_PIN                      PE13    // PD15
+#define E1_DIR_PIN                       PC2 // PE7
+#define E1_ENABLE_PIN                     PC0// PA3
 #ifndef E1_CS_PIN
-  #define E1_CS_PIN                         PG15
+  #define E1_CS_PIN                       PB9// PG15
 #endif
 
-#define E2_STEP_PIN                         PD13
-#define E2_DIR_PIN                          PG9
-#define E2_ENABLE_PIN                       PF0
+// Unassigned in code, LR4 Port X
+#define E2_STEP_PIN                       PE9   // PD13
+#define E2_DIR_PIN                        PF1// PG9
+#define E2_ENABLE_PIN                     PF2// PF0
 #ifndef E2_CS_PIN
-  #define E2_CS_PIN                         PG12
+  #define E2_CS_PIN                       PA15// PG12
 #endif
+
 
 //
 // Software SPI pins for TMC2130 stepper drivers
@@ -205,22 +239,37 @@
   //#define E3_HARDWARE_SERIAL Serial1
   //#define E4_HARDWARE_SERIAL Serial1
 
-  #define X_SERIAL_TX_PIN                   PC13
+
+  // Physical port to IO pin mappings (TX, Rx is identical)
+  //Port X PC13
+  //Port Y PE3
+  //Port Z0 PE1
+  //Port E0 PD4
+  //Port E1 PD1
+  //Port E2 PD6
+
+  //X Axis in code, LR4 port E2
+  #define X_SERIAL_TX_PIN                  PD6 // PC13
   #define X_SERIAL_RX_PIN        X_SERIAL_TX_PIN
 
-  #define Y_SERIAL_TX_PIN                   PE3
+  //Y1 (back) in code, LR4 port E0
+  #define Y_SERIAL_TX_PIN                  PD4 // PE3
   #define Y_SERIAL_RX_PIN        Y_SERIAL_TX_PIN
 
-  #define Z_SERIAL_TX_PIN                   PE1
+  //Z1 (back) in code, LR4 port E1
+  #define Z_SERIAL_TX_PIN                  PD1 // PE1
   #define Z_SERIAL_RX_PIN        Z_SERIAL_TX_PIN
 
-  #define E0_SERIAL_TX_PIN                  PD4
+  //Y2 (front) in code, LR4 port Y
+  #define E0_SERIAL_TX_PIN                 PE3 // PD4
   #define E0_SERIAL_RX_PIN      E0_SERIAL_TX_PIN
 
-  #define E1_SERIAL_TX_PIN                  PD1
+  //Z2 (front) in code, LR4 Port Z0
+  #define E1_SERIAL_TX_PIN                 PE1 // PD1
   #define E1_SERIAL_RX_PIN      E1_SERIAL_TX_PIN
 
-  #define E2_SERIAL_TX_PIN                  PD6
+  // Unassigned in code, LR4 Port X
+  #define E2_SERIAL_TX_PIN                 PC13 // PD6
   #define E2_SERIAL_RX_PIN      E2_SERIAL_TX_PIN
 
   // Reduce baud rate to improve software serial reliability
