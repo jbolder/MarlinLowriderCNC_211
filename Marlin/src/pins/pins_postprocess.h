@@ -775,6 +775,8 @@
   #define X2_MS3_PIN -1
 #endif
 
+//LR4 coordinate swap: port allocation is done here in order X, Y, so with disabling Y, X remains the same Y2 port
+
 #if HAS_DUAL_Y_STEPPERS && !defined(Y2_DIAG_PIN) && !defined(Y2_STEP_PIN) && !PIN_EXISTS(Y2_CS_PIN)
   #define Z2_E_INDEX INCREMENT(Y2_E_INDEX)
 #else

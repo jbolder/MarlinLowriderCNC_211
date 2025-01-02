@@ -163,8 +163,8 @@
 #define X_DRIVER_TYPE TMC2209 // TMC2209 // A4988
 #define Y_DRIVER_TYPE TMC2209 // TMC2209 // A4988
 #define Z_DRIVER_TYPE TMC2209 // TMC2209 // A4988
-//#define X2_DRIVER_TYPE A4988
-#define Y2_DRIVER_TYPE TMC2209 // A4988
+#define X2_DRIVER_TYPE TMC2209 // LR4 coordinate swap XY
+//#define Y2_DRIVER_TYPE TMC2209 // A4988
 #define Z2_DRIVER_TYPE TMC2209 // A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
@@ -1636,7 +1636,7 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
+#define INVERT_X_DIR true
 #define INVERT_Y_DIR false
 #define INVERT_Z_DIR true
 //#define INVERT_I_DIR false
@@ -1677,7 +1677,7 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR 1 //LR4 coordinate swap | TEST COMPILATION WITH WRONG DIRECTION
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR +1 // -1
 //#define I_HOME_DIR -1
@@ -1690,8 +1690,9 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 649 // 200
-#define Y_BED_SIZE 1397 // 200
+//LR4 Swapped XY: looks like bed size MUST be positive number from code, homedir towards Xmax
+#define X_BED_SIZE 1397 // 200
+#define Y_BED_SIZE 649 // 200
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0

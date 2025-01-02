@@ -871,7 +871,7 @@
       #elif X2_USE_ENDSTOP == _YMIN_
         #define X2_MAX_PIN Y_MIN_PIN
       #elif X2_USE_ENDSTOP == _YMAX_
-        #define X2_MAX_PIN Y_MAX_PIN
+        #define X2_MAX_PIN Y_MAX_PIN //LR4 coordinate swap: pin X2 referenced here
       #elif X2_USE_ENDSTOP == _YSTOP_
         #define X2_MAX_PIN Y_STOP_PIN
       #elif X2_USE_ENDSTOP == _ZMIN_

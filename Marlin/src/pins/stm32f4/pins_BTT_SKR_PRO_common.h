@@ -59,6 +59,7 @@
 
 //
 // Trinamic Stallguard pins
+// LR4: not changed this, stallgaurd not in use altough wrong pins assigned!
 //
 #define X_DIAG_PIN                          PB10  // X-
 #define Y_DIAG_PIN                          PE12  // Y-
@@ -78,8 +79,8 @@
     #define X_MIN_PIN                       PE15  // E0
   #endif
 #else
-  #define X_MIN_PIN                         PB10  // X-
-  #define X_MAX_PIN                         PE15  // E0
+  #define X_MIN_PIN                         PE10 // =X2 LR4 XY swap // PB10  // X-
+  #define X_MAX_PIN                         PE12 // =X1 LR4 XY swap PE15  // E0
 #endif
 
 #ifdef Y_STALL_SENSITIVITY
@@ -90,8 +91,8 @@
     #define Y_MIN_PIN                       PE10  // E1
   #endif
 #else
-  #define Y_MIN_PIN                         PE12  // Y-
-  #define Y_MAX_PIN                         PE10  // E1
+  #define Y_MIN_PIN                         PB10 // =Y LR4 XY swap // PE12  // Y-
+  #define Y_MAX_PIN                         PE15 // =Z2 LR4 XY swap // PE10  // E1
 #endif
 
 #ifdef Z_STALL_SENSITIVITY
@@ -140,7 +141,7 @@
 //Y back (1 in code) - port Y
 //Z back (1 in code) - port Z0
 
-// NEW LR4 Dec 2024
+// NEW LR4 Dec 2024 - Original XY mapping, has changed below and not updated here. See "C:\Users\jbold\Google Drive\_Developing\Lowrider3CNC\_Lowrider4 Upgrade\notes coordinate swap marlin.txt"
 //X - port E2
 //Y front (2 in code) - port Y
 //Z front (2 in code) - port Z0
@@ -156,21 +157,22 @@
 //Port E2 PD13 PG9 PF0 PG12
 
 
-//X Axis in code, LR4 port E2
-#define X_STEP_PIN                       PD13    // PE9
-#define X_DIR_PIN                        PG9 // PF1
-#define X_ENABLE_PIN                     PF0 // PF2
+//Y1 (back) in code, LR4 port E0, coordinate swap port E2
+#define X_STEP_PIN                        PE14   // PE11
+#define X_DIR_PIN                         PA0// PE8
+#define X_ENABLE_PIN                     PC3 // PD7
 #ifndef X_CS_PIN
-  #define X_CS_PIN                       PG12 // PA15
+  #define X_CS_PIN                       PB3 // PB8
 #endif
 
-//Y1 (back) in code, LR4 port E0
-#define Y_STEP_PIN                        PE14   // PE11
-#define Y_DIR_PIN                         PA0// PE8
-#define Y_ENABLE_PIN                     PC3 // PD7
+//X Axis in code, LR4 port E2, coordinate swap port E0
+#define Y_STEP_PIN                       PD13    // PE9
+#define Y_DIR_PIN                        PG9 // PF1
+#define Y_ENABLE_PIN                     PF0 // PF2
 #ifndef Y_CS_PIN
-  #define Y_CS_PIN                       PB3 // PB8
+  #define Y_CS_PIN                       PG12 // PA15
 #endif
+
 
 //Z1 (back) in code, LR4 port E1
 #define Z_STEP_PIN                       PD15    // PE13
@@ -248,12 +250,13 @@
   //Port E1 PD1
   //Port E2 PD6
 
-  //X Axis in code, LR4 port E2
-  #define X_SERIAL_TX_PIN                  PD6 // PC13
-  #define X_SERIAL_RX_PIN        X_SERIAL_TX_PIN
 
   //Y1 (back) in code, LR4 port E0
-  #define Y_SERIAL_TX_PIN                  PD4 // PE3
+  #define X_SERIAL_TX_PIN                  PD4 // PE3
+  #define X_SERIAL_RX_PIN        X_SERIAL_TX_PIN
+
+  //X Axis in code, LR4 port E2
+  #define Y_SERIAL_TX_PIN                  PD6 // PC13
   #define Y_SERIAL_RX_PIN        Y_SERIAL_TX_PIN
 
   //Z1 (back) in code, LR4 port E1
